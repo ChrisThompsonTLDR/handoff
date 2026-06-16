@@ -36,6 +36,7 @@ _NEW_RUN_ID_RE = re.compile(
 _BACKEND_ABBREV: dict[str, str] = {
     "deepseek": "ds",
     "codex": "cx",
+    "ollama": "ol",
 }
 
 

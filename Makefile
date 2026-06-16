@@ -17,6 +17,7 @@ MASTER := $(SKILLS)/handoff-ds/SKILL.md
 skills:  ## 把 handoff-ds/SKILL.md 正文同步到其它 backend 的 SKILL.md
 	@$(call sync_skill,handoff-codex,codex,cx)
 	@$(call sync_skill,handoff-opus,opus,op)
+	@$(call sync_skill,handoff-ollama,ollama,ol)
 	@echo "done."
 
 # $(1)=目标目录  $(2)=backend 名  $(3)=run_id 缩写

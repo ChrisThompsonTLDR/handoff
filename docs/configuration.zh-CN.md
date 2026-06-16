@@ -16,13 +16,13 @@ cli/backend_types.yaml（机制：每种 type 怎么被拉起——flags、PTY�
 
 机制层随包分发（`cli/backend_types.yaml`），定义了 `claude` / `codex` 两种 type 的 CLI 命令、PTY 包装和 flag 模板。这些是程序行为的一部分，用户不能覆盖——改了也没用。
 
-数据层就是你的 `~/.handoff/config.yaml`。`handoff init` 会生成一份含三个目标（deepseek / opus / codex）的完整配置；你只需填 deepseek 的 token。没有隐藏的默认值覆盖你的设置——文件里写的就是全部。
+数据层就是你的 `~/.handoff/config.yaml`。`handoff init` 会生成一份含四个目标（deepseek / opus / codex / ollama）的完整配置；你只需填 deepseek 的 token。没有隐藏的默认值覆盖你的设置——文件里写的就是全部。
 
 运行 `handoff env` 可以随时找到这两个文件的路径。
 
 ## 最小配置
 
-opus / codex 走你本机的登录态，零配置。deepseek 只需一个 token——二选一：
+opus / codex / ollama 走你本机登录态或本地运行环境，零 token 配置。deepseek 只需一个 token——二选一：
 
 **方式一：环境变量**（推荐）
 
@@ -40,13 +40,14 @@ backends:
       ANTHROPIC_AUTH_TOKEN: "sk-..."
 ```
 
-## 三个内置目标
+## 四个内置目标
 
 | backend | type | 模型 | 底层 | 需要配置 |
 | --- | --- | --- | --- | --- |
 | `deepseek` | claude | `deepseek-v4-flash`（pro: `deepseek-v4-pro[1m]`） | `claude -p` → DeepSeek Anthropic 端点 | token |
 | `opus` | claude | `claude-opus-4-8` | `claude -p` → 本机 Claude 登录态 | 无 |
 | `codex` | codex | `gpt-5.5` | `codex exec` → 本机 Codex 登录态 | 无 |
+| `ollama` | codex | `qwen3:8b`（pro: `qwen3:32b`） | `codex exec` → 本地 Ollama OpenAI 兼容端点 | 需本地启动 Ollama |
 
 默认目标是 `backends` 下的**第一个条目**。
 

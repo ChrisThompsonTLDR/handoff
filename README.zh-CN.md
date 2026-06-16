@@ -52,7 +52,7 @@ uv tool upgrade handoff-cli   # 更新到最新版
 
 ### 2. 配 token
 
-opus / codex 走你本机的 claude / codex 登录态，零配置；**只有 DeepSeek 需要填一个 token**。
+opus / codex / ollama 走你本机的登录态或本地运行环境，零 token 配置；**只有 DeepSeek 需要填一个 token**。
 
 DeepSeek 算力推荐走 [OpenCode Go 套餐](https://opencode.ai/go?ref=D5926WCTD8)（单价最低，含 DeepSeek V4）。拿到 key 后，编辑 `~/.handoff/config.yaml`，只改 `ANTHROPIC_AUTH_TOKEN` 这一行：
 
@@ -74,6 +74,13 @@ backends:
   codex:                             # 本机 codex 登录态，零配置
     type: codex
     ...
+  ollama:                            # 本地 Ollama（OpenAI 兼容端点）
+    type: codex
+    model: qwen3:8b
+    pro_model: qwen3:32b
+    env:
+      OPENAI_BASE_URL: http://127.0.0.1:11434/v1
+      OPENAI_API_KEY: ollama
 ```
 
 ### 3. 派第一个活
@@ -92,6 +99,7 @@ backends:
 | `handoff-ds`（subagent） | Codex | DeepSeek V4 | 同上——你人在 Codex 里时走这条 |
 | `/handoff-codex` | Claude Code | Codex (GPT-5.5) | 复杂推理、第二意见、疑难调试 |
 | `/handoff-opus` | Claude Code | Claude Opus | 需要顶级模型出马的关键决策 |
+| `/handoff-ollama` | Claude Code | Ollama（本地模型） | 本地/离线执行，以及成本敏感的编码任务 |
 
 > Codex 里没有 slash 命令，所以那行是同名 subagent：说「让 `handoff-ds` 执行上述任务」即可。
 

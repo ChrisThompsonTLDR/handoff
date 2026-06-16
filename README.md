@@ -51,7 +51,7 @@ uv tool upgrade handoff-cli   # update to the latest version
 
 ### 2. Set your token
 
-The `opus` and `codex` backends reuse your existing Claude Code / Codex logins — zero config. **Only DeepSeek needs a token.**
+The `opus`, `codex`, and `ollama` backends run on local login/runtime state — zero token setup. **Only DeepSeek needs a token.**
 
 For DeepSeek, we recommend the [OpenCode Go plan](https://opencode.ai/go?ref=D5926WCTD8) (lowest cost, includes DeepSeek V4). Once you have a key, edit `~/.handoff/config.yaml` and change just the `ANTHROPIC_AUTH_TOKEN` line:
 
@@ -73,6 +73,13 @@ backends:
   codex:                             # local codex login — zero config
     type: codex
     ...
+  ollama:                            # local Ollama (OpenAI-compatible endpoint)
+    type: codex
+    model: qwen3:8b
+    pro_model: qwen3:32b
+    env:
+      OPENAI_BASE_URL: http://127.0.0.1:11434/v1
+      OPENAI_API_KEY: ollama
 ```
 
 ### 3. Dispatch your first task
@@ -91,6 +98,7 @@ The task runs in the background; your session is never blocked. When it finishes
 | `handoff-ds` (subagent) | Codex | DeepSeek V4 | Same as above — use this when you're inside Codex |
 | `/handoff-codex` | Claude Code | Codex (GPT-5.5) | Heavy reasoning, second opinions, hard bugs |
 | `/handoff-opus` | codex/deepseek | Claude Opus | Decisions that deserve the top model |
+| `/handoff-ollama` | Claude Code | Ollama (local models) | Local/offline execution and cost-sensitive coding tasks |
 
 > Codex has no slash commands — from Codex you invoke the subagent of the same name instead: say "have `handoff-ds` execute the task above."
 

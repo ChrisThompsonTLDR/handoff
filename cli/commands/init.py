@@ -41,6 +41,8 @@ def _planned_links():
          _home_path(".claude", "skills", "handoff-codex", "SKILL.md")),
         ("soft link", os.path.join(skills_dir, "handoff-opus", "SKILL.md"),
          _home_path(".claude", "skills", "handoff-opus", "SKILL.md")),
+        ("soft link", os.path.join(skills_dir, "handoff-ollama", "SKILL.md"),
+         _home_path(".claude", "skills", "handoff-ollama", "SKILL.md")),
     ]
 
 
@@ -87,8 +89,8 @@ def _create_links():
     os.link(src_agent, dest_agent)
     created += 1
 
-    # Soft links for Claude Code skills (3 backends)
-    for skill_name in ("handoff-ds", "handoff-codex", "handoff-opus"):
+    # Soft links for Claude Code skills (4 backends)
+    for skill_name in ("handoff-ds", "handoff-codex", "handoff-opus", "handoff-ollama"):
         src_skill = os.path.join(skills_dir, skill_name, "SKILL.md")
         dest_skill_dir = _home_path(".claude", "skills", skill_name)
         dest_skill = os.path.join(dest_skill_dir, "SKILL.md")
@@ -98,7 +100,7 @@ def _create_links():
         os.symlink(src_skill, dest_skill)
         created += 1
 
-    print(f"✓ Created {created} links (1 hard + 3 soft)")
+    print(f"✓ Created {created} links (1 hard + 4 soft)")
 
 
 def run_init(assume_yes: bool = False):

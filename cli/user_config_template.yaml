@@ -35,3 +35,11 @@ backends:
     type: codex
     model: gpt-5.5 # you can change to gpt-5.4
     pro_model: gpt-5.5
+
+  ollama:
+    type: codex
+    model: qwen3:8b
+    pro_model: qwen3:32b
+    env:
+      OPENAI_BASE_URL: http://127.0.0.1:11434/v1
+      OPENAI_API_KEY: ollama

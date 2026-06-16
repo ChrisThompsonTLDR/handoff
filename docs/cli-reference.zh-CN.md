@@ -55,6 +55,7 @@ handoff init [-y|--yes]
 | `~/.claude/skills/handoff-ds/SKILL.md` | `/handoff-ds` |
 | `~/.claude/skills/handoff-codex/SKILL.md` | `/handoff-codex` |
 | `~/.claude/skills/handoff-opus/SKILL.md` | `/handoff-opus` |
+| `~/.claude/skills/handoff-ollama/SKILL.md` | `/handoff-ollama` |
 | `~/.codex/agents/handoff-ds.toml` | `handoff-ds` subagent |
 
 `-y` / `--yes` 跳过交互确认。已存在的 config.yaml 不会被覆盖。
