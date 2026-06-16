@@ -32,6 +32,7 @@ cli/
     ├── handoff-ds/SKILL.md   # Claude Code skill → deepseek backend
     ├── handoff-codex/SKILL.md# Claude Code skill → codex backend
     ├── handoff-opus/SKILL.md # Claude Code skill → opus backend
+    ├── handoff-ollama/SKILL.md # Claude Code skill → ollama backend
     └── handoff-ds.toml       # Codex subagent definition → deepseek backend
 ```
 
